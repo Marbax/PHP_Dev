@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <form action="form_proc.php" method="POST">
+            <input style="margin: 1rem" name="login" type="text" placeholder="Login" required />
+            <input
+                style="margin: 1rem"
+                name="email"
+                type="email"
+                placeholder="Email"
+                required
+                pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+            />
+            <!--email reg ex doesn't mutch-->
+            <input style="margin: 1rem" name="password" type="password" placeholder="Password" required />
+            <input style="margin: 1rem" name="passwordConfirm" type="password" placeholder="Password Confirm" required />
+            <button type="submit">Login</button>
+        </form>
+    </body>
+</html>

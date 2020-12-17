@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <!--
+        Написать PHP скрипт, создающий на странице три текстовых поля. 
+        В эти поля пользователь должен заносить значения R, G и B цветовых компонент (в интервале 0-255). 
+        На странице также должна присутствовать кнопка Accept и тег span с каким-либо текстом внутри.
+        После нажатия на кнопку Accept, надо создать цвет на основе введенных пользователем значений R, G и B. Этим цветом залить фон тега span, а текст залить дополнительным цветом.
+    -->
+    <!--action="form_proc.php" method="GET"-->
+    <body>
+        <form id="colorForm" style="display: block; padding: 2rem">
+            <div style="display: block; width: max-content; margin: 0 auto">
+                <input style="margin: 1rem 0.2rem; display: inline-block" name="Red" type="number" value="2" placeholder="Red" required min="0" max="255" />
+                <input style="margin: 1rem 0.2rem; display: inline-block" name="Green" type="number" value="2" placeholder="Green" required min="0" max="255" />
+                <input style="margin: 1rem 0.2rem; display: inline-block" name="Blue" type="number" value="2" placeholder="Blue" required min="0" max="255" />
+                <button style="display: block; margin: 1rem auto" type="submit">Accept</button>
+            </div>
+        </form>
+        <div style="display: block; width: max-content; margin: 0 auto">
+            <span class="colorize-it">Some text</span>
+        </div>
+    </body>
+
+    <script>
+        const submit = document.getElementById('colorForm')
+        submit.addEventListener('submit', async (e) => await handleSubmit(e))
+
+        const itemToColorize = document.querySelector('.colorize-it')
+
+        async function handleSubmit(e) {
+            e.preventDefault()
+            const red = e.target.elements['Red'].value
+            const green = e.target.elements['Green'].value
+            const blue = e.target.elements['Blue'].value
+            itemToColorize.style.backgroundColor = await getColor(red, green, blue)
+
+            const arr = []
+            arr[0] = Math.random() * 250
+            arr[1] = Math.random() * 250
+            arr[2] = Math.random() * 250
+            arr.sort(() => Math.random() - 0.5)
+            itemToColorize.style.color = await getColor(arr[0], arr[1], arr[2])
+        }
+
+        async function getColor(r, g, b) {
+            const resp = await fetch(`form_proc.php?Red=${r}&Green=${g}&Blue=${b}`)
+            const data = await resp.json()
+            return data
+        }
+    </script>
+</html>

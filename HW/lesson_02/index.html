@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div style="width: max-content; margin: 15vh auto">
+            <form method="post" id="countryForm" name="countryForm">
+                <em id="countryMsg" style="margin: 0.2rem auto; display: block; color: red"></em>
+                <input type="text" name="country" id="country" required />
+                <input type="submit" value="Enter" />
+            </form>
+            <select name="countryList" id="countryList" style="margin: 1rem auto">
+                <option disabled="true" selected="true" hidden="true">Select country</option>
+            </select>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>
